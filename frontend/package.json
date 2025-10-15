@@ -1,11 +1,13 @@
 {
   "name": "frontend",
+  "homepage": "https://19horses.github.io/write-club",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
+    "postbuild": "cp dist/index.html dist/404.html",
     "test": "vitest",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d dist",
@@ -18,7 +20,9 @@
     "axios": "^1.11.0",
     "gh-pages": "^5.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router": "^7.9.4",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
     "@testing-library/react": "^13.4.0",
