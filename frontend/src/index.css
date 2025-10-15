@@ -1,3 +1,21 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+
+@font-face {
+  font-family: League;
+  src: url('./assets/fonts/LeagueSpartan.ttf');
+}
+
+@font-face {
+  font-family: Luxury;
+  src: url('./assets/fonts/LuxuriousScript.ttf');
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+}
