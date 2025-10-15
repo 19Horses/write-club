@@ -1,6 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { styled } from 'styled-components';
+import { keyframes, styled } from 'styled-components';
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+`;
 
 const StyledNav = styled.nav`
   display: flex;
@@ -10,7 +22,7 @@ const StyledNav = styled.nav`
   box-sizing: border-box;
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(Link)<{ $delay: number }>`
   text-decoration: none;
   font-family: 'Luxury';
   font-size: 2rem;
@@ -24,16 +36,32 @@ const StyledLink = styled(Link)`
   align-items: center;
   justify-content: center;
   text-align: center;
+  opacity: 0;
+
+  animation: ${fadeIn} 0.3s ease-in-out forwards;
+  animation-delay: ${({ $delay }) => $delay}s;
 `;
 
 export const Nav = () => {
+  const links = [
+    { to: '/about', label: 'About' },
+    { to: '/niche', label: "What's your Niche?" },
+    { to: '/tube-thoughts', label: 'Tube Thoughts' },
+    { to: '/write-club', label: 'Write Club' },
+    { to: '/in-conversation', label: 'In Conversation' },
+  ];
+
   return (
     <StyledNav>
-      <StyledLink to="/about">About</StyledLink>
-      <StyledLink to="/niche">What&apos;s your Niche?</StyledLink>
-      <StyledLink to="/tube-thoughts">Tube Thoughts</StyledLink>
-      <StyledLink to="/write-club">Write Club</StyledLink>
-      <StyledLink to="/in-conversation">In Conversation</StyledLink>
+      {links.map((link, index) => (
+        <StyledLink
+          key={link.to}
+          to={link.to}
+          $delay={0.7 + index * 0.2} // 👈 initial 0.7s delay, then stagger each by 0.2s
+        >
+          {link.label}
+        </StyledLink>
+      ))}
     </StyledNav>
   );
 };
