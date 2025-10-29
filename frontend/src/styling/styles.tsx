@@ -45,3 +45,25 @@ export const Button = styled.button`
     color: white;
   }
 `;
+
+export const BodyTextSmall = styled.p`
+  font-size: 16px;
+  color: #df1212;
+  margin: 0;
+
+  &::selection {
+    background-color: #df1212;
+    color: white;
+  }
+`;
+
+export const BodyTextTiny = styled.p`
+  font-size: 14px;
+  color: #df1212;
+  margin: 0;
+
+  &::selection {
+    background-color: #df1212;
+    color: white;
+  }
+`;

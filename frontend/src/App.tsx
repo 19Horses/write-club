@@ -7,6 +7,7 @@ import { InConversation } from './pages/InConversation';
 import { Niche } from './pages/Niche';
 import { StarryNights } from './pages/StarryNights';
 import { WriteClub } from './pages/WriteClub';
+import { Essay } from './pages/Essay';
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/niche" element={<Niche />} />
             <Route path="/starry-nights" element={<StarryNights />} />
+            <Route path="/starry-nights/:essayId" element={<Essay />} />
             <Route path="/write-club" element={<WriteClub />} />
             <Route path="/in-conversation" element={<InConversation />} />
           </Routes>
