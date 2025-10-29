@@ -1,5 +1,5 @@
-function InConversation() {
-  return <p>In Conversation</p>;
-}
+import { Header } from '../components/Header';
 
-export default InConversation;
+export const InConversation = () => {
+  return <Header title="IN CONVERSATION" />;
+};

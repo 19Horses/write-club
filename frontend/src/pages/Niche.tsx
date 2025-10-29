@@ -1,5 +1,5 @@
-function Niche() {
-  return <p>Niche</p>;
-}
+import { Header } from '../components/Header';
 
-export default Niche;
+export const Niche = () => {
+  return <Header title="NICHE" />;
+};

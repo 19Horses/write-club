@@ -54,11 +54,7 @@ export const Nav = () => {
   return (
     <StyledNav>
       {links.map((link, index) => (
-        <StyledLink
-          key={link.to}
-          to={link.to}
-          $delay={0.7 + index * 0.2} // 👈 initial 0.7s delay, then stagger each by 0.2s
-        >
+        <StyledLink key={link.to} to={link.to} $delay={index * 0.1}>
           {link.label}
         </StyledLink>
       ))}

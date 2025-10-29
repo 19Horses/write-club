@@ -1,13 +1,12 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Home from './pages/Home';
-import About from './pages/About';
-import Niche from './pages/Niche';
-import TubeThoughts from './pages/TubeThoughts';
-import WriteClub from './pages/WriteClub';
-import InConversation from './pages/InConversation';
-import { BrowserRouter, Routes, Route } from 'react-router';
-import { Nav } from './components/Nav';
+import { BrowserRouter, Route, Routes } from 'react-router';
 import { styled } from 'styled-components';
+import { About } from './pages/About';
+import { Home } from './pages/Home';
+import { InConversation } from './pages/InConversation';
+import { Niche } from './pages/Niche';
+import { TubeThoughts } from './pages/TubeThoughts';
+import { WriteClub } from './pages/WriteClub';
 
 const queryClient = new QueryClient();
 
@@ -23,7 +22,6 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Container>
-          <Nav />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />

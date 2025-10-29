@@ -1,5 +1,5 @@
-function TubeThoughts() {
-  return <p>Tube Thoughts</p>;
-}
+import { Header } from '../components/Header';
 
-export default TubeThoughts;
+export const TubeThoughts = () => {
+  return <Header title="TUBE THOUGHTS" />;
+};

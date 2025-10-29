@@ -1,5 +1,5 @@
-function WriteClub() {
-  return <p>Write Club</p>;
-}
+import { Header } from '../components/Header';
 
-export default WriteClub;
+export const WriteClub = () => {
+  return <Header title="WRITE CLUB" />;
+};
