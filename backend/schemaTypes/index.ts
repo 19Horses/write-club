@@ -1,3 +1,3 @@
-import {postType} from './postType'
+import {eventLink} from './eventLink'
 
-export const schemaTypes = [postType]
+export const schemaTypes = [eventLink]
