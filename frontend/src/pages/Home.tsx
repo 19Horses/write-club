@@ -40,6 +40,10 @@ const Image = styled.img`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  &::selection {
+    background-color: transparent;
+  }
 `;
 
 const Title = styled.h1`
@@ -52,6 +56,10 @@ const Title = styled.h1`
   color: #e42121;
   margin-top: -1px;
   animation: ${fadeIn} 0.6s ease-in-out;
+  &::selection {
+    background-color: #df1212;
+    color: white;
+  }
 `;
 
 const Subtitle = styled.h2`
@@ -63,6 +71,10 @@ const Subtitle = styled.h2`
   font-family: 'Luxury';
   color: #e42121;
   animation: ${fadeIn} 0.7s ease-in-out;
+  &::selection {
+    background-color: #df1212;
+    color: white;
+  }
 `;
 
 export const Home = () => {
