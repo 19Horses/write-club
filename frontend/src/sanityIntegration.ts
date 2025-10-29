@@ -1,5 +1,12 @@
+import imageUrlBuilder from '@sanity/image-url';
+
 const projectId = 'jng98qne';
 export const SANITY_URL = `https://${projectId}.apicdn.sanity.io/v2025-06-01`;
 
 export const getApiUrl = (query: string) =>
   `${SANITY_URL}/data/query/production?query=${encodeURI(query)}`;
+
+export const builder = imageUrlBuilder({
+  projectId,
+  dataset: 'production',
+});

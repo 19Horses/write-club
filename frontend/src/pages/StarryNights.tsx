@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { Header } from '../components/Header';
 import { Layout } from '../components/Layout';
 import { useGetEssays } from '../queries/useGetEssays';
-import { BodyText } from '../styling/styles';
+import { BodyText, BodyTextSmall, BodyTextTiny } from '../styling/styles';
 import { useNavigate } from 'react-router';
 
 const EssayContainer = styled.div`
@@ -36,28 +36,6 @@ const EssayTitle = styled.h3`
   }
 `;
 
-const EssayAuthor = styled.p`
-  font-size: 16px;
-  color: #df1212;
-  margin: 0;
-
-  &::selection {
-    background-color: #df1212;
-    color: white;
-  }
-`;
-
-const EssayDate = styled.p`
-  font-size: 14px;
-  color: #df1212;
-  margin: 0;
-
-  &::selection {
-    background-color: #df1212;
-    color: white;
-  }
-`;
-
 export const StarryNights = () => {
   const navigate = useNavigate();
   const { data: essays } = useGetEssays();
@@ -82,8 +60,8 @@ export const StarryNights = () => {
               onClick={() => handleEssayClick(essay._id)}
             >
               <EssayTitle>{essay.title}</EssayTitle>
-              <EssayAuthor>{essay.author}</EssayAuthor>
-              <EssayDate>{essay.date}</EssayDate>
+              <BodyTextSmall>{essay.author}</BodyTextSmall>
+              <BodyTextTiny>{essay.date}</BodyTextTiny>
             </EssayItem>
           ))}
         </EssayContainer>

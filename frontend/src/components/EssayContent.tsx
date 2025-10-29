@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { PortableText, type PortableTextBlock } from '@portabletext/react';
 import { getImageDimensions } from '@sanity/asset-utils';
-import urlBuilder from '@sanity/image-url';
 import { keyframes, styled } from 'styled-components';
 import { BodyText } from '../styling/styles';
+import { builder } from '../sanityIntegration';
 
 interface EssayContentProps {
   content: PortableTextBlock[];
@@ -71,6 +71,12 @@ const BlockComponent = ({ value }: { value: PortableTextBlock }) => {
   );
 };
 
+const Image = styled.img<{ $width: number; $height: number }>`
+  display: block;
+  max-width: 100%;
+  aspect-ratio: ${({ $width, $height }) => $width / $height};
+`;
+
 const SampleImageComponent = ({
   value,
 }: {
@@ -80,23 +86,14 @@ const SampleImageComponent = ({
   const { width, height } = getImageDimensions(value);
   const { ref, isVisible } = useIntersectionObserver();
 
-  console.log(value);
-
   return (
     <AnimatedBlock ref={ref} $isVisible={isVisible}>
-      <img
-        src={urlBuilder()
-          .image(value)
-          .width(800)
-          .fit('max')
-          .auto('format')
-          .url()}
+      <Image
+        src={builder.image(value).fit('max').auto('format').url()}
         alt={value.alt || ' '}
         loading="lazy"
-        style={{
-          display: 'block',
-          aspectRatio: width / height,
-        }}
+        $width={width}
+        $height={height}
       />
     </AnimatedBlock>
   );

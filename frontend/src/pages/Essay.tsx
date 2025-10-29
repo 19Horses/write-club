@@ -3,6 +3,7 @@ import { EssayContent } from '../components/EssayContent';
 import { Header } from '../components/Header';
 import { Layout } from '../components/Layout';
 import { useGetEssay } from '../queries/useGetEssays';
+import { BodyTextSmall, BodyTextTiny } from '../styling/styles';
 
 export const Essay = () => {
   const { essayId } = useParams();
@@ -21,6 +22,8 @@ export const Essay = () => {
     <>
       <Header title={essay.title} withBackButton />
       <Layout>
+        <BodyTextSmall>{essay.author}</BodyTextSmall>
+        <BodyTextTiny>{essay.date}</BodyTextTiny>
         <EssayContent content={essay.content} />
       </Layout>
     </>
