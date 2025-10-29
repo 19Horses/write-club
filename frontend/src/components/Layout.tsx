@@ -7,7 +7,7 @@ const Container = styled.div`
   height: calc(100% - 100px);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   padding: 0px 100px;
   box-sizing: border-box;
   transition: all 0.3s ease-in-out;
