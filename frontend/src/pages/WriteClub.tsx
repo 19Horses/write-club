@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { Header } from '../components/Header';
 import { Layout } from '../components/Layout';
 import { BodyText, Button } from '../styling/styles';
+import { useGetEventLink } from '../queries/useGetEventLink';
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -12,6 +13,7 @@ const ButtonContainer = styled.div`
 `;
 
 export const WriteClub = () => {
+  const { data: eventLink } = useGetEventLink();
   return (
     <>
       <Header title="Write Club" />
@@ -33,7 +35,11 @@ export const WriteClub = () => {
           No one will be expected to share any of their writing.
         </BodyText>
         <ButtonContainer>
-          <Button>(Eventbrite Link)</Button>
+          <Button>
+            <a href={eventLink?.url} target="_blank" rel="noopener noreferrer">
+              (Eventbrite Link)
+            </a>
+          </Button>
         </ButtonContainer>
       </Layout>
     </>

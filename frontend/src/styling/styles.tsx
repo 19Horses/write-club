@@ -28,9 +28,20 @@ export const Button = styled.button`
     background-color: white;
     color: #df1212;
     border: 1px solid #df1212;
+
+    & > a {
+      transition: all 0.2s ease-in-out;
+      text-decoration: none;
+      color: #df1212;
+    }
   }
 
   &::selection {
     background-color: #df1212;
+  }
+
+  & > a {
+    text-decoration: none;
+    color: white;
   }
 `;
