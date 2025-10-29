@@ -1,5 +1,5 @@
-function About() {
-  return <p>About</p>;
-}
+import { Header } from '../components/Header';
 
-export default About;
+export const About = () => {
+  return <Header title="About" />;
+};

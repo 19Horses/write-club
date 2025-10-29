@@ -1,5 +1,6 @@
 import { keyframes, styled } from 'styled-components';
 import mainImage from '.././assets/images/write-club.webp';
+import { Nav } from '../components/Nav';
 
 export const fadeInImage = keyframes`
   from {
@@ -64,14 +65,15 @@ const Subtitle = styled.h2`
   animation: ${fadeIn} 0.7s ease-in-out;
 `;
 
-function Home() {
+export const Home = () => {
   return (
-    <MainTitleContainer>
-      <Image src={mainImage} alt="pomegranate" />
-      <Title>WRITE</Title>
-      <Subtitle>CLUB</Subtitle>
-    </MainTitleContainer>
+    <>
+      <Nav />
+      <MainTitleContainer>
+        <Image src={mainImage} alt="pomegranate" />
+        <Title>WRITE</Title>
+        <Subtitle>CLUB</Subtitle>
+      </MainTitleContainer>
+    </>
   );
-}
-
-export default Home;
+};
