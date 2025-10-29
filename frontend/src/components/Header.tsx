@@ -1,6 +1,8 @@
 import { styled } from 'styled-components';
 import cross from '../assets/images/cross.svg';
+import back from '../assets/images/back.svg';
 import { useNavigate } from 'react-router';
+import { fadeIn } from '../styling/animations';
 
 const Text = styled.p`
   font-family: 'Luxury';
@@ -22,6 +24,7 @@ const StyledHeader = styled.header`
   align-items: center;
   padding: 4px;
   box-sizing: border-box;
+  animation: ${fadeIn} 0.2s ease-in-out;
 `;
 
 const Cross = styled.img`
@@ -37,15 +40,38 @@ const Cross = styled.img`
   }
 `;
 
-export const Header = ({ title }: { title: string }) => {
+const Back = styled.img`
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 10px;
+`;
+
+export const Header = ({
+  title,
+  withBackButton = false,
+}: {
+  title: string;
+  withBackButton?: boolean;
+}) => {
   const navigate = useNavigate();
   const handleCrossClick = () => {
     navigate('/');
   };
+  const handleBackButtonClick = () => {
+    navigate(-1);
+  };
   return (
     <StyledHeader>
+      {withBackButton && (
+        <Back src={back} alt="back" onClick={handleBackButtonClick} />
+      )}
       <Text>{title}</Text>
-      <Cross src={cross} alt="cross" onClick={handleCrossClick} />
+      {!withBackButton && (
+        <Cross src={cross} alt="cross" onClick={handleCrossClick} />
+      )}
     </StyledHeader>
   );
 };

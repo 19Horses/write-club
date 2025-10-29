@@ -1,8 +1,71 @@
+import { styled } from 'styled-components';
 import { Header } from '../components/Header';
 import { Layout } from '../components/Layout';
+import { useGetEssays } from '../queries/useGetEssays';
 import { BodyText } from '../styling/styles';
+import { useNavigate } from 'react-router';
+
+const EssayContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+`;
+
+const EssayItem = styled.button`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 4px;
+  border: 1px solid #df1212;
+  padding: 10px;
+  font: 'League';
+  cursor: pointer;
+  background-color: transparent;
+`;
+
+const EssayTitle = styled.h3`
+  font-size: 20px;
+  font-family: 'League';
+  color: #df1212;
+  margin: 0;
+
+  &::selection {
+    background-color: #df1212;
+    color: white;
+  }
+`;
+
+const EssayAuthor = styled.p`
+  font-size: 16px;
+  color: #df1212;
+  margin: 0;
+
+  &::selection {
+    background-color: #df1212;
+    color: white;
+  }
+`;
+
+const EssayDate = styled.p`
+  font-size: 14px;
+  color: #df1212;
+  margin: 0;
+
+  &::selection {
+    background-color: #df1212;
+    color: white;
+  }
+`;
 
 export const StarryNights = () => {
+  const navigate = useNavigate();
+  const { data: essays } = useGetEssays();
+
+  const handleEssayClick = (essayId: string) => {
+    navigate(`/starry-nights/${essayId}`);
+  };
+
   return (
     <>
       <Header title="Starry Nights" />
@@ -12,6 +75,18 @@ export const StarryNights = () => {
           take writings, opinions and feelings, journal entries- ultimately
           thoughts that have intrigued the thought bearer and stuck.
         </BodyText>
+        <EssayContainer>
+          {essays?.map((essay) => (
+            <EssayItem
+              key={essay._id}
+              onClick={() => handleEssayClick(essay._id)}
+            >
+              <EssayTitle>{essay.title}</EssayTitle>
+              <EssayAuthor>{essay.author}</EssayAuthor>
+              <EssayDate>{essay.date}</EssayDate>
+            </EssayItem>
+          ))}
+        </EssayContainer>
       </Layout>
     </>
   );
