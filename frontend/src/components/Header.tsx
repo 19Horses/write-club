@@ -9,6 +9,11 @@ const Text = styled.p`
   color: #df1212;
   text-align: center;
   width: 100%;
+
+  &::selection {
+    background-color: #df1212;
+    color: white;
+  }
 `;
 
 const StyledHeader = styled.header`
@@ -26,6 +31,10 @@ const Cross = styled.img`
   position: absolute;
   top: 20px;
   right: 8px;
+
+  &::selection {
+    background-color: white;
+  }
 `;
 
 export const Header = ({ title }: { title: string }) => {

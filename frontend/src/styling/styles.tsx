@@ -5,6 +5,11 @@ export const BodyText = styled.p`
   font-size: 20px;
   color: #df1212;
   text-align: justify;
+
+  &::selection {
+    background-color: #df1212;
+    color: white;
+  }
 `;
 
 export const Button = styled.button`
@@ -23,5 +28,9 @@ export const Button = styled.button`
     background-color: white;
     color: #df1212;
     border: 1px solid #df1212;
+  }
+
+  &::selection {
+    background-color: #df1212;
   }
 `;

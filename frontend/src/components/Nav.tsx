@@ -29,6 +29,11 @@ const StyledLink = styled(Link)<{ $delay: number }>`
 
   animation: ${fadeIn} 0.3s ease-in-out forwards;
   animation-delay: ${({ $delay }) => $delay}s;
+
+  &::selection {
+    background-color: #df1212;
+    color: white;
+  }
 `;
 
 export const Nav = () => {
