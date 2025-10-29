@@ -5,7 +5,7 @@ import { About } from './pages/About';
 import { Home } from './pages/Home';
 import { InConversation } from './pages/InConversation';
 import { Niche } from './pages/Niche';
-import { TubeThoughts } from './pages/TubeThoughts';
+import { StarryNights } from './pages/StarryNights';
 import { WriteClub } from './pages/WriteClub';
 
 const queryClient = new QueryClient();
@@ -26,7 +26,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/niche" element={<Niche />} />
-            <Route path="/tube-thoughts" element={<TubeThoughts />} />
+            <Route path="/starry-nights" element={<StarryNights />} />
             <Route path="/write-club" element={<WriteClub />} />
             <Route path="/in-conversation" element={<InConversation />} />
           </Routes>

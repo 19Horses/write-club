@@ -35,7 +35,7 @@ export const Nav = () => {
   const links = [
     { to: '/about', label: 'About' },
     { to: '/niche', label: "What's your Niche?" },
-    { to: '/tube-thoughts', label: 'Tube Thoughts' },
+    { to: '/starry-nights', label: 'Starry Nights' },
     { to: '/write-club', label: 'Write Club' },
     { to: '/in-conversation', label: 'In Conversation' },
   ];
