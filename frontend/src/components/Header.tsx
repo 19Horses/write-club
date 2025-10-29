@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import cross from '../assets/images/cross.svg';
 import { useNavigate } from 'react-router';
+import { fadeIn } from '../styling/animations';
 
 const Text = styled.p`
   font-family: 'Luxury';
@@ -9,6 +10,7 @@ const Text = styled.p`
   color: #df1212;
   text-align: center;
   width: 100%;
+  animation: ${fadeIn} 0.3s ease-in-out;
 `;
 
 const StyledHeader = styled.header`
@@ -28,8 +30,9 @@ const Cross = styled.img`
   height: 60px;
   cursor: pointer;
   position: absolute;
-  top: 8px;
+  top: 20px;
   right: 8px;
+  animation: ${fadeIn} 0.4s ease-in-out;
 `;
 
 export const Header = ({ title }: { title: string }) => {
