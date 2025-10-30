@@ -3,7 +3,12 @@ import { styled } from 'styled-components';
 import { EssayContent } from '../components/EssayContent';
 import { Layout } from '../components/Layout';
 import { useGetEssay } from '../queries/useGetEssays';
-import { BodyTextSmall, BodyTextTiny, EssayItemTitle } from '../styling/styles';
+import {
+  BodyTextSmall,
+  BodyTextTiny,
+  Buffer,
+  ItemTitle,
+} from '../styling/styles';
 import { BackButton } from '../components/BackButton';
 
 const EssayHeader = styled.div`
@@ -17,10 +22,6 @@ const EssayHeader = styled.div`
   @media (max-width: 768px) {
     text-align: right;
   }
-`;
-
-const Buffer = styled.div`
-  padding-top: 20px;
 `;
 
 export const Essay = () => {
@@ -58,7 +59,7 @@ export const Essay = () => {
       <BackButton />
       <Layout>
         <EssayHeader>
-          <EssayItemTitle>{essay.title}</EssayItemTitle>
+          <ItemTitle>{essay.title}</ItemTitle>
           <BodyTextSmall>{essay.author}</BodyTextSmall>
           <BodyTextTiny>{essay.date}</BodyTextTiny>
         </EssayHeader>

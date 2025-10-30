@@ -1,10 +1,21 @@
 import { Header } from '../components/Header';
 import { Layout } from '../components/Layout';
 import { useGetInterviews } from '../queries/useGetInterviews';
-import { BodyText } from '../styling/styles';
+import {
+  BodyText,
+  BodyTextSmall,
+  BodyTextTiny,
+  ItemButton,
+  ItemContainer,
+  ItemTitle,
+} from '../styling/styles';
+import { useNavigate } from 'react-router';
 
 export const Niche = () => {
+  const navigate = useNavigate();
+
   const { data: interviews, isLoading, isError } = useGetInterviews();
+
   if (isLoading) {
     return (
       <Layout>
@@ -21,7 +32,9 @@ export const Niche = () => {
     );
   }
 
-  console.log(interviews);
+  const handleInterviewClick = (interviewId: string) => {
+    navigate(`/niche/${interviewId}`);
+  };
 
   return (
     <>
@@ -32,6 +45,18 @@ export const Niche = () => {
           insight into the minds of some of this generations intellectual and
           creative thinkers and talents.
         </BodyText>
+        <ItemContainer>
+          {interviews?.map((interview) => (
+            <ItemButton
+              key={interview._id}
+              onClick={() => handleInterviewClick(interview._id)}
+            >
+              <ItemTitle>{interview.title}</ItemTitle>
+              <BodyTextSmall>{interview.intervieweeName}</BodyTextSmall>
+              <BodyTextTiny>{interview.date}</BodyTextTiny>
+            </ItemButton>
+          ))}
+        </ItemContainer>
       </Layout>
     </>
   );

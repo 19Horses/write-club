@@ -4,7 +4,7 @@ import axios from 'axios';
 import { getApiUrl } from '../sanityIntegration';
 
 export type InterviewTurn = {
-  speakerName: string;
+  initials: string;
   text: PortableTextBlock[];
 };
 
@@ -22,10 +22,10 @@ const interviewsQuery = `
   _id,
   title,
   date,
-  "interviewerName": interviewer->name,
-  "intervieweeName": interviewee->name,
+  "interviewerName": interviewer->fullName,
+  "intervieweeName": interviewee->fullName,
   "transcript": transcript[]{
-    "speakerName": speaker->name,
+    "initials": speaker->initials,
     text
   }
 }`;

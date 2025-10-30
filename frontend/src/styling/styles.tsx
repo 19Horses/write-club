@@ -13,6 +13,25 @@ export const BodyText = styled.p`
   }
 `;
 
+export const ItemContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+`;
+
+export const ItemButton = styled.button`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 4px;
+  border: 1px solid #df1212;
+  padding: 10px;
+  font: 'League';
+  cursor: pointer;
+  background-color: transparent;
+`;
+
 export const Button = styled.button`
   font-family: 'League';
   font-size: 14px;
@@ -69,7 +88,7 @@ export const BodyTextTiny = styled.p`
   }
 `;
 
-export const EssayItemTitle = styled.h3`
+export const ItemTitle = styled.h3`
   font-size: 20px;
   font-family: 'League';
   color: #df1212;
@@ -84,4 +103,8 @@ export const AnimatedBlock = styled.div<{ $isVisible: boolean }>`
   opacity: 0;
   animation: ${({ $isVisible }) => ($isVisible ? fadeIn : 'none')} 0.6s ease-out
     forwards;
+`;
+
+export const Buffer = styled.div`
+  padding-top: 20px;
 `;
