@@ -2,7 +2,12 @@ import { styled } from 'styled-components';
 import { Header } from '../components/Header';
 import { Layout } from '../components/Layout';
 import { useGetEssays } from '../queries/useGetEssays';
-import { BodyText, BodyTextSmall, BodyTextTiny } from '../styling/styles';
+import {
+  BodyText,
+  BodyTextSmall,
+  BodyTextTiny,
+  EssayItemTitle,
+} from '../styling/styles';
 import { useNavigate } from 'react-router';
 
 const EssayContainer = styled.div`
@@ -22,18 +27,6 @@ const EssayItem = styled.button`
   font: 'League';
   cursor: pointer;
   background-color: transparent;
-`;
-
-const EssayTitle = styled.h3`
-  font-size: 20px;
-  font-family: 'League';
-  color: #df1212;
-  margin: 0;
-
-  &::selection {
-    background-color: #df1212;
-    color: white;
-  }
 `;
 
 export const StarryNights = () => {
@@ -59,7 +52,7 @@ export const StarryNights = () => {
               key={essay._id}
               onClick={() => handleEssayClick(essay._id)}
             >
-              <EssayTitle>{essay.title}</EssayTitle>
+              <EssayItemTitle>{essay.title}</EssayItemTitle>
               <BodyTextSmall>{essay.author}</BodyTextSmall>
               <BodyTextTiny>{essay.date}</BodyTextTiny>
             </EssayItem>

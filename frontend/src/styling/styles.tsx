@@ -67,3 +67,15 @@ export const BodyTextTiny = styled.p`
     color: white;
   }
 `;
+
+export const EssayItemTitle = styled.h3`
+  font-size: 20px;
+  font-family: 'League';
+  color: #df1212;
+  margin: 0;
+
+  &::selection {
+    background-color: #df1212;
+    color: white;
+  }
+`;
