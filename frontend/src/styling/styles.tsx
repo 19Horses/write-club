@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { fadeIn } from './animations';
 
 export const BodyText = styled.p`
   font-family: 'League';
@@ -10,6 +11,25 @@ export const BodyText = styled.p`
     background-color: #df1212;
     color: white;
   }
+`;
+
+export const ItemContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+`;
+
+export const ItemButton = styled.button`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 4px;
+  border: 1px solid #df1212;
+  padding: 10px;
+  font: 'League';
+  cursor: pointer;
+  background-color: transparent;
 `;
 
 export const Button = styled.button`
@@ -66,4 +86,25 @@ export const BodyTextTiny = styled.p`
     background-color: #df1212;
     color: white;
   }
+`;
+
+export const ItemTitle = styled.h3`
+  font-size: 20px;
+  font-family: 'League';
+  color: #df1212;
+  margin: 0;
+
+  &::selection {
+    background-color: #df1212;
+    color: white;
+  }
+`;
+export const AnimatedBlock = styled.div<{ $isVisible: boolean }>`
+  opacity: 0;
+  animation: ${({ $isVisible }) => ($isVisible ? fadeIn : 'none')} 0.6s ease-out
+    forwards;
+`;
+
+export const Buffer = styled.div`
+  padding-top: 20px;
 `;

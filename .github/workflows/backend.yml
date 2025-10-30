@@ -20,6 +20,5 @@ jobs:
       - name: Install & Deploy
         run: |
           yarn install
-          yarn build
           yarn deploy
         working-directory: backend
