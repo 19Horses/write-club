@@ -1,20 +1,10 @@
-import { Navigate, useNavigate, useParams } from 'react-router';
+import { Navigate, useParams } from 'react-router';
 import { styled } from 'styled-components';
-import back from '../assets/images/back.svg';
 import { EssayContent } from '../components/EssayContent';
 import { Layout } from '../components/Layout';
 import { useGetEssay } from '../queries/useGetEssays';
 import { BodyTextSmall, BodyTextTiny, EssayItemTitle } from '../styling/styles';
-
-const Back = styled.img`
-  width: 3rem;
-  height: 3rem;
-  cursor: pointer;
-  position: fixed;
-  top: 20px;
-  left: 10px;
-  z-index: 1000;
-`;
+import { BackButton } from '../components/BackButton';
 
 const EssayHeader = styled.div`
   display: flex;
@@ -35,7 +25,6 @@ const Buffer = styled.div`
 
 export const Essay = () => {
   const { essayId } = useParams();
-  const navigate = useNavigate();
 
   if (!essayId) {
     return <Navigate to="/starry-nights" replace />;
@@ -63,15 +52,10 @@ export const Essay = () => {
     );
   }
 
-  const handleBackButtonClick = () => {
-    navigate(-1);
-  };
-
   return (
     <>
-      {/* <Header title={essay.title} withBackButton /> */}
       <Buffer />
-      <Back src={back} alt="back" onClick={handleBackButtonClick} />
+      <BackButton />
       <Layout>
         <EssayHeader>
           <EssayItemTitle>{essay.title}</EssayItemTitle>
