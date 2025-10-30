@@ -1,7 +1,20 @@
 import { getImageDimensions } from '@sanity/asset-utils';
-import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { builder } from '../sanityIntegration';
-import { AnimatedBlock, Image, Caption } from './EssayContent';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { builder } from '../../sanityIntegration';
+import { styled } from 'styled-components';
+import { AnimatedBlock } from '../../styling/styles';
+
+export const Caption = styled.p`
+  font-size: 12px;
+  color: #df1212;
+  margin-top: 4px;
+`;
+
+export const Image = styled.img<{ $width: number; $height: number }>`
+  display: block;
+  max-width: 100%;
+  aspect-ratio: ${({ $width, $height }) => $width / $height};
+`;
 
 export const ImageComponent = ({
   value,

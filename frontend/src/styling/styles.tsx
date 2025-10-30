@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { fadeIn } from './animations';
 
 export const BodyText = styled.p`
   font-family: 'League';
@@ -78,4 +79,9 @@ export const EssayItemTitle = styled.h3`
     background-color: #df1212;
     color: white;
   }
+`;
+export const AnimatedBlock = styled.div<{ $isVisible: boolean }>`
+  opacity: 0;
+  animation: ${({ $isVisible }) => ($isVisible ? fadeIn : 'none')} 0.6s ease-out
+    forwards;
 `;

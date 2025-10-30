@@ -1,6 +1,7 @@
 import type { PortableTextBlock } from '@portabletext/react';
-import { BodyText } from '../styling/styles';
-import { useIntersectionObserver, AnimatedBlock } from './EssayContent';
+import { BodyText } from '../../styling/styles';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { AnimatedBlock } from '../../styling/styles';
 
 export const BlockComponent = ({ value }: { value: PortableTextBlock }) => {
   const text = value.children[0].text;
