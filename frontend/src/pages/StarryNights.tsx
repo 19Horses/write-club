@@ -1,23 +1,23 @@
-import { useNavigate } from 'react-router';
+import { styled } from 'styled-components';
+import { Collection } from '../components/Collection';
 import { Header } from '../components/Header';
 import { Layout } from '../components/Layout';
-import { useGetEssays } from '../queries/useGetEssays';
-import {
-  BodyText,
-  BodyTextSmall,
-  BodyTextTiny,
-  ItemButton,
-  ItemContainer,
-  ItemTitle,
-} from '../styling/styles';
+import { useGetCollections } from '../queries/useGetCollections';
+import { BodyText } from '../styling/styles';
+
+export const CollectionContainer = styled.div`
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  border: 1px solid #df1212;
+  font: 'League';
+  cursor: pointer;
+  background-color: white;
+`;
 
 export const StarryNights = () => {
-  const navigate = useNavigate();
-  const { data: essays } = useGetEssays();
-
-  const handleEssayClick = (essayId: string) => {
-    navigate(`/starry-nights/${essayId}`);
-  };
+  const { data: collections } = useGetCollections();
 
   return (
     <>
@@ -28,18 +28,11 @@ export const StarryNights = () => {
           take writings, opinions and feelings, journal entries- ultimately
           thoughts that have intrigued the thought bearer and stuck.
         </BodyText>
-        <ItemContainer>
-          {essays?.map((essay) => (
-            <ItemButton
-              key={essay._id}
-              onClick={() => handleEssayClick(essay._id)}
-            >
-              <ItemTitle>{essay.title}</ItemTitle>
-              <BodyTextSmall>{essay.author}</BodyTextSmall>
-              <BodyTextTiny>{essay.date}</BodyTextTiny>
-            </ItemButton>
-          ))}
-        </ItemContainer>
+        <CollectionContainer>
+          {collections?.map((collection) => {
+            return <Collection key={collection._id} collection={collection} />;
+          })}
+        </CollectionContainer>
       </Layout>
     </>
   );
