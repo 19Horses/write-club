@@ -14,6 +14,10 @@ export const Image = styled.img<{ $width: number; $height: number }>`
   display: block;
   max-width: 100%;
   aspect-ratio: ${({ $width, $height }) => $width / $height};
+
+  &::selection {
+    background-color: transparent;
+  }
 `;
 
 export const ImageComponent = ({

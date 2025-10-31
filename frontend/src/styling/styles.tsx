@@ -16,7 +16,6 @@ export const BodyText = styled.p`
 export const ItemContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
   width: 100%;
 `;
 
@@ -29,7 +28,11 @@ export const ItemButton = styled.button`
   padding: 10px;
   font: 'League';
   cursor: pointer;
-  background-color: transparent;
+  background-color: white;
+  transition: all 0.2s ease 0.1s;
+  &:hover {
+    background-color: #f0f0f0;
+  }
 `;
 
 export const Button = styled.button`
