@@ -1,22 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 import { fadeIn } from '../styling/animations';
 
-const StyledNav = styled.nav`
+const StyledNav = styled.nav<{ $isMobile: boolean }>`
   display: flex;
   justify-content: space-evenly;
   width: 100%;
   padding: 16px;
   box-sizing: border-box;
+  ${({ $isMobile }) =>
+    $isMobile &&
+    css`
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    `}
 `;
 
-const StyledLink = styled(Link)<{ $delay: number }>`
+const StyledLink = styled(Link)<{ $delay: number; $isMobile: boolean }>`
   text-decoration: none;
   font-family: 'Luxury';
   font-size: 2rem;
   color: #df1212;
   width: 14%;
+  ${({ $isMobile }) =>
+    $isMobile &&
+    css`
+      width: 80%;
+      font-size: 3rem;
+    `}
   height: 60px;
   border: 1px solid #df1212;
   padding: 16px;
@@ -36,7 +50,7 @@ const StyledLink = styled(Link)<{ $delay: number }>`
   }
 `;
 
-export const Nav = () => {
+export const Nav = ({ isMobile = false }: { isMobile?: boolean }) => {
   const links = [
     { to: '/about', label: 'About' },
     { to: '/starry-nights', label: 'Starry Nights' },
@@ -46,9 +60,14 @@ export const Nav = () => {
   ];
 
   return (
-    <StyledNav>
+    <StyledNav $isMobile={isMobile}>
       {links.map((link, index) => (
-        <StyledLink key={link.to} to={link.to} $delay={index * 0.1}>
+        <StyledLink
+          key={link.to}
+          to={link.to}
+          $delay={index * 0.1}
+          $isMobile={isMobile}
+        >
           {link.label}
         </StyledLink>
       ))}
