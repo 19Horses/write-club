@@ -5,7 +5,7 @@ import { fadeIn } from '../styling/animations';
 
 const StyledNav = styled.nav`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100%;
   padding: 16px;
   box-sizing: border-box;
@@ -39,10 +39,10 @@ const StyledLink = styled(Link)<{ $delay: number }>`
 export const Nav = () => {
   const links = [
     { to: '/about', label: 'About' },
-    { to: '/niche', label: "What's your Niche?" },
     { to: '/starry-nights', label: 'Starry Nights' },
+    { to: '/niche', label: "What's your Niche?" },
     { to: '/write-club', label: 'Write Club' },
-    { to: '/in-conversation', label: 'In Conversation' },
+    // { to: '/in-conversation', label: 'In Conversation' },
   ];
 
   return (
