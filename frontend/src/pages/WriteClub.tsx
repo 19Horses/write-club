@@ -3,6 +3,8 @@ import { Header } from '../components/Header';
 import { Layout } from '../components/Layout';
 import { BodyText, Button } from '../styling/styles';
 import { useGetEventLink } from '../queries/useGetEventLink';
+import { useGetThemes } from '../queries/useGetThemes';
+import { Theme } from '../components/Theme';
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -12,8 +14,20 @@ const ButtonContainer = styled.div`
   margin-top: 60px;
 `;
 
+const AccordionContainer = styled.div`
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  border: 1px solid #df1212;
+  font: 'League';
+  background-color: white;
+  margin-top: 60px;
+`;
+
 export const WriteClub = () => {
   const { data: eventLink } = useGetEventLink();
+  const { data: themes } = useGetThemes();
   return (
     <>
       <Header title="Write Club" />
@@ -41,6 +55,11 @@ export const WriteClub = () => {
             </a>
           </Button>
         </ButtonContainer>
+        <AccordionContainer>
+          {themes?.map((theme) => (
+            <Theme key={theme._id} theme={theme} />
+          ))}
+        </AccordionContainer>
       </Layout>
     </>
   );
