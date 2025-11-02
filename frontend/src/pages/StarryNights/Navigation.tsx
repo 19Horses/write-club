@@ -50,6 +50,11 @@ const NavStar = styled(Star)`
   height: 50px;
   position: relative;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: rotate(20deg);
+  }
 `;
 
 const Modal = styled.div`
