@@ -4,6 +4,7 @@ import { fadeIn } from '../styling/animations';
 
 const Container = styled.div`
   width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -19,6 +20,10 @@ const AnimatedChild = styled.div<{ $delay: number }>`
   opacity: 0;
   animation: ${fadeIn} 0.3s ease-in-out forwards;
   animation-delay: ${({ $delay }) => $delay}s;
+
+  &:last-of-type {
+    height: 100%;
+  }
 `;
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {

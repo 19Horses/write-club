@@ -1,5 +1,6 @@
 import { css, styled } from 'styled-components';
 import { fadeIn, fadeOut } from './animations';
+import star from '../assets/images/star.webp';
 
 export const BodyText = styled.p`
   font-family: 'League';
@@ -125,7 +126,9 @@ export const Buffer = styled.div`
   padding-top: 20px;
 `;
 
-export const Star = styled.img<{
+export const Star = styled.img.attrs({
+  src: star,
+})<{
   $top?: number;
   $left?: number;
   $rotate?: number;
