@@ -3,8 +3,11 @@ import mainImage from '../../assets/images/write-club.webp';
 import { Image, MainTitleContainer, Subtitle, Title } from './styles';
 import { useMediaQuery } from 'react-responsive';
 import { MOBILE_BREAKPOINT } from '../../constants';
+import { useGetPages } from '../../queries/useGetPages';
 
 export const Home = () => {
+  // preload pages data
+  useGetPages();
   const isMobile = useMediaQuery({
     query: `(max-width: ${MOBILE_BREAKPOINT}px)`,
   });

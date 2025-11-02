@@ -4,6 +4,8 @@ import { Header } from '../components/Header';
 import { Layout } from '../components/Layout';
 import { useGetCollections } from '../queries/useGetCollections';
 import { BodyText } from '../styling/styles';
+import { useGetPages } from '../queries/useGetPages';
+import { PageContent } from '../components/PageContent';
 
 export const CollectionContainer = styled.div`
   display: flex;
@@ -17,17 +19,38 @@ export const CollectionContainer = styled.div`
 `;
 
 export const StarryNights = () => {
-  const { data: collections } = useGetCollections();
+  const {
+    data: collections,
+    isLoading: isCollectionsLoading,
+    isError: isCollectionsError,
+  } = useGetCollections();
+  const {
+    data: page,
+    isLoading: isStarryNightsPageLoading,
+    isError: isStarryNightsPageError,
+  } = useGetPages('starry-nights');
+
+  if (isStarryNightsPageLoading || isCollectionsLoading) {
+    return (
+      <Layout>
+        <BodyText>Loading...</BodyText>
+      </Layout>
+    );
+  }
+
+  if (isStarryNightsPageError || isCollectionsError || !page) {
+    return (
+      <Layout>
+        <BodyText>Error loading page</BodyText>
+      </Layout>
+    );
+  }
 
   return (
     <>
       <Header title="Starry Nights" />
       <Layout>
-        <BodyText>
-          Contributions ranging across many different topics- think pieces, one
-          take writings, opinions and feelings, journal entries- ultimately
-          thoughts that have intrigued the thought bearer and stuck.
-        </BodyText>
+        <PageContent content={page[0].copy} />
         <CollectionContainer>
           {collections?.map((collection) => {
             return <Collection key={collection._id} collection={collection} />;

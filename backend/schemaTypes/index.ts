@@ -5,6 +5,7 @@ import {interview} from './interview'
 import {interviewTurn} from './interviewTurn'
 import {person} from './person'
 import {theme} from './theme'
+import {page} from './page'
 
 export const schemaTypes = [
   essayCollection,
@@ -14,4 +15,5 @@ export const schemaTypes = [
   interviewTurn,
   person,
   theme,
+  page,
 ]

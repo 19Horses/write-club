@@ -1,17 +1,16 @@
 import { PortableText, type PortableTextBlock } from '@portabletext/react';
-import { ImageComponent, BlockComponent } from './portableTextComponents';
+import { BlockComponent } from './portableTextComponents';
 
-interface InterviewContentProps {
+interface PageContentProps {
   content: PortableTextBlock[];
 }
 
 const components = {
   types: {
-    image: ImageComponent,
     block: BlockComponent,
   },
 };
 
-export const InterviewContent = ({ content }: InterviewContentProps) => {
+export const PageContent = ({ content }: PageContentProps) => {
   return <PortableText value={content} components={components} />;
 };
