@@ -5,6 +5,8 @@ import { BodyText, Button } from '../styling/styles';
 import { useGetEventLink } from '../queries/useGetEventLink';
 import { useGetThemes } from '../queries/useGetThemes';
 import { Theme } from '../components/Theme';
+import { PageContent } from '../components/PageContent';
+import { useGetPages } from '../queries/useGetPages';
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -27,27 +29,38 @@ const AccordionContainer = styled.div`
 
 export const WriteClub = () => {
   const { data: eventLink } = useGetEventLink();
-  const { data: themes } = useGetThemes();
+  const {
+    data: themes,
+    isLoading: isThemesLoading,
+    isError: isThemesError,
+  } = useGetThemes();
+  const {
+    data: page,
+    isLoading: isWriteClubPageLoading,
+    isError: isWriteClubPageError,
+  } = useGetPages('write-club');
+
+  if (isWriteClubPageLoading || isThemesLoading) {
+    return (
+      <Layout>
+        <BodyText>Loading...</BodyText>
+      </Layout>
+    );
+  }
+
+  if (isWriteClubPageError || isThemesError || !page) {
+    return (
+      <Layout>
+        <BodyText>Error loading page</BodyText>
+      </Layout>
+    );
+  }
+
   return (
     <>
       <Header title="Write Club" />
       <Layout>
-        <BodyText>
-          A space to be an individual in a community. For anyone who already
-          loves to write or has it as something they want to make more time for
-          or simply just wants to explore a new hobby. The focus will be on
-          journaling/ self-reflective writing.
-        </BodyText>
-        <BodyText>
-          Feel free to bring your own materials including laptops and/or any
-          pieces of writing you may already be working on whatever that may be.
-          Prompts will be read out for those who wish to engage but ultimately
-          the idea is to create a space where people can come and write.
-        </BodyText>
-        <BodyText>Come as you are. All genders and races welcome.</BodyText>
-        <BodyText>
-          No one will be expected to share any of their writing.
-        </BodyText>
+        <PageContent content={page[0].copy} />
         <ButtonContainer>
           <Button>
             <a href={eventLink?.url} target="_blank" rel="noopener noreferrer">

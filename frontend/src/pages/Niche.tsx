@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router';
 import { Header } from '../components/Header';
 import { Layout } from '../components/Layout';
+import { PageContent } from '../components/PageContent';
 import { useGetInterviews } from '../queries/useGetInterviews';
+import { useGetPages } from '../queries/useGetPages';
 import {
   BodyText,
   BodyTextSmall,
@@ -9,14 +12,22 @@ import {
   ItemContainer,
   ItemTitle,
 } from '../styling/styles';
-import { useNavigate } from 'react-router';
 
 export const Niche = () => {
   const navigate = useNavigate();
+  const {
+    data: page,
+    isLoading: isNichePageLoading,
+    isError: isNichePageError,
+  } = useGetPages('niche');
 
-  const { data: interviews, isLoading, isError } = useGetInterviews();
+  const {
+    data: interviews,
+    isLoading: isInterviewsLoading,
+    isError: isInterviewsError,
+  } = useGetInterviews();
 
-  if (isLoading) {
+  if (isNichePageLoading || isInterviewsLoading) {
     return (
       <Layout>
         <BodyText>Loading...</BodyText>
@@ -24,7 +35,7 @@ export const Niche = () => {
     );
   }
 
-  if (isError) {
+  if (isNichePageError || isInterviewsError || !page) {
     return (
       <Layout>
         <BodyText>Error loading interviews</BodyText>
@@ -40,11 +51,7 @@ export const Niche = () => {
     <>
       <Header title="What's your Niche?" />
       <Layout>
-        <BodyText>
-          Interviews with a range of people from different fields providing
-          insight into the minds of some of this generations intellectual and
-          creative thinkers and talents.
-        </BodyText>
+        <PageContent content={page[0].copy} />
         <ItemContainer>
           {interviews?.map((interview) => (
             <ItemButton
