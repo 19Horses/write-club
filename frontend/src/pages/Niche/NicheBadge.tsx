@@ -1,7 +1,8 @@
+import { fadeIn } from '../../styling/animations';
 import { BodyText, BodyTextSmall } from '../../styling/styles';
 import { styled } from 'styled-components';
 
-export const Badge = styled.button`
+export const Badge = styled.button<{ $delay: number }>`
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -13,6 +14,9 @@ export const Badge = styled.button`
   box-sizing: border-box;
   font-family: 'Luxury';
   width: 240px;
+
+  animation-delay: ${({ $delay }) => $delay}s;
+  animation: ${fadeIn} 0.3s ease-in-out forwards;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -60,12 +64,14 @@ export const BadgeFooter = styled.div`
 export const NicheBadge = ({
   onClick,
   intervieweeName,
+  delay,
 }: {
   onClick: () => void;
   intervieweeName: string;
+  delay: number;
 }) => {
   return (
-    <Badge onClick={onClick}>
+    <Badge $delay={delay} onClick={onClick}>
       <BadgeHeader>
         <BodyText>HELLO</BodyText>
         <BodyTextSmall>my name is</BodyTextSmall>

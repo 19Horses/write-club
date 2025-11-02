@@ -47,11 +47,12 @@ export const Niche = () => {
       <Layout>
         <PageContent content={page[0].copy} />
         <ItemContainer>
-          {interviews?.map((interview) => (
+          {interviews?.map((interview, index) => (
             <NicheBadge
               key={interview._id}
               onClick={() => handleInterviewClick(interview._id)}
               intervieweeName={interview.intervieweeName}
+              delay={index * 0.1}
             />
           ))}
         </ItemContainer>
