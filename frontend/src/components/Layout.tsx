@@ -12,7 +12,7 @@ const Container = styled.div`
   box-sizing: border-box;
   transition: all 0.3s ease-in-out;
   @media (max-width: 900px) {
-    padding: 0px 20px;
+    padding: 0px 20px 20px 20px;
   }
 `;
 

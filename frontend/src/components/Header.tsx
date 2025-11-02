@@ -3,13 +3,15 @@ import cross from '../assets/images/cross.svg';
 import back from '../assets/images/back.svg';
 import { useNavigate } from 'react-router';
 import { fadeIn } from '../styling/animations';
+import { useMediaQuery } from 'react-responsive';
+import { MOBILE_BREAKPOINT } from '../constants';
 
-const Text = styled.p`
+const Text = styled.p<{ $isMobile: boolean }>`
   font-family: 'Luxury';
-  font-size: 80px;
+  font-size: ${({ $isMobile }) => ($isMobile ? '60px' : '80px')};
   margin: 0;
   color: #df1212;
-  text-align: center;
+  text-align: ${({ $isMobile }) => ($isMobile ? 'left' : 'center')};
   width: 100%;
 
   &::selection {
@@ -18,11 +20,11 @@ const Text = styled.p`
   }
 `;
 
-const StyledHeader = styled.header`
+const StyledHeader = styled.header<{ $isMobile: boolean }>`
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 4px;
+  padding: ${({ $isMobile }) => ($isMobile ? '16px' : '4px')};
   box-sizing: border-box;
   animation: ${fadeIn} 0.2s ease-in-out;
 `;
@@ -56,6 +58,9 @@ export const Header = ({
   title: string;
   withBackButton?: boolean;
 }) => {
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${MOBILE_BREAKPOINT}px)`,
+  });
   const navigate = useNavigate();
   const handleCrossClick = () => {
     navigate('/');
@@ -64,11 +69,11 @@ export const Header = ({
     navigate(-1);
   };
   return (
-    <StyledHeader>
+    <StyledHeader $isMobile={isMobile}>
       {withBackButton && (
         <Back src={back} alt="back" onClick={handleBackButtonClick} />
       )}
-      <Text>{title}</Text>
+      <Text $isMobile={isMobile}>{title}</Text>
       {!withBackButton && (
         <Cross src={cross} alt="cross" onClick={handleCrossClick} />
       )}
