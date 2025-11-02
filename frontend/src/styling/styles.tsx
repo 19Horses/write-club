@@ -146,6 +146,10 @@ export const Star = styled.img.attrs({
   rotate: ${({ $rotate }) => ($rotate ? $rotate : '0')}deg;
   right: ${({ $right }) => ($right ? `${$right}px` : 'auto')};
   bottom: ${({ $bottom }) => ($bottom ? `${$bottom}px` : 'auto')};
+
+  &::selection {
+    background-color: transparent;
+  }
 `;
 
 export const Arrow = styled.img`

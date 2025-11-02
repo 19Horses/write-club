@@ -1,11 +1,10 @@
-import { styled } from 'styled-components';
-import cross from '../assets/images/cross.svg';
-import back from '../assets/images/back.svg';
-import { useNavigate } from 'react-router';
-import { fadeIn } from '../styling/animations';
 import { useMediaQuery } from 'react-responsive';
+import { useNavigate } from 'react-router';
+import { styled } from 'styled-components';
+import back from '../assets/images/back.svg';
+import cross from '../assets/images/cross.svg';
 import { MOBILE_BREAKPOINT } from '../constants';
-import star from '../assets/images/star.webp';
+import { fadeIn } from '../styling/animations';
 import { Star } from '../styling/styles';
 
 const Text = styled.p<{ $isMobile: boolean }>`
@@ -78,13 +77,9 @@ export const Header = ({
         <Back src={back} alt="back" onClick={handleBackButtonClick} />
       )}
       <div style={{ position: 'relative' }}>
-        {withStar && (
-          <Star $top={5} $left={10} $rotate={-10} src={star} alt="star" />
-        )}
+        {withStar && <Star $top={5} $left={10} $rotate={-10} alt="star" />}
         <Text $isMobile={isMobile}>{title}</Text>
-        {withStar && (
-          <Star $rotate={-8} $right={-10} $bottom={5} src={star} alt="star" />
-        )}
+        {withStar && <Star $rotate={-8} $right={-10} $bottom={5} alt="star" />}
       </div>
       {!withBackButton && (
         <Cross src={cross} alt="cross" onClick={handleCrossClick} />
