@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router';
 import { fadeIn } from '../styling/animations';
 import { useMediaQuery } from 'react-responsive';
 import { MOBILE_BREAKPOINT } from '../constants';
+import star from '../assets/images/star.webp';
+import { Star } from '../styling/styles';
 
 const Text = styled.p<{ $isMobile: boolean }>`
   font-family: 'Luxury';
@@ -12,7 +14,6 @@ const Text = styled.p<{ $isMobile: boolean }>`
   margin: 0;
   color: #df1212;
   text-align: ${({ $isMobile }) => ($isMobile ? 'left' : 'center')};
-  width: 100%;
 
   &::selection {
     background-color: #df1212;
@@ -24,6 +25,7 @@ const StyledHeader = styled.header<{ $isMobile: boolean }>`
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: ${({ $isMobile }) => ($isMobile ? 'flex-start' : 'center')};
   padding: ${({ $isMobile }) => ($isMobile ? '16px' : '4px')};
   box-sizing: border-box;
   animation: ${fadeIn} 0.2s ease-in-out;
@@ -54,9 +56,11 @@ const Back = styled.img`
 export const Header = ({
   title,
   withBackButton = false,
+  withStar = false,
 }: {
   title: string;
   withBackButton?: boolean;
+  withStar?: boolean;
 }) => {
   const isMobile = useMediaQuery({
     query: `(max-width: ${MOBILE_BREAKPOINT}px)`,
@@ -73,7 +77,15 @@ export const Header = ({
       {withBackButton && (
         <Back src={back} alt="back" onClick={handleBackButtonClick} />
       )}
-      <Text $isMobile={isMobile}>{title}</Text>
+      <div style={{ position: 'relative' }}>
+        {withStar && (
+          <Star $top={5} $left={10} $rotate={-10} src={star} alt="star" />
+        )}
+        <Text $isMobile={isMobile}>{title}</Text>
+        {withStar && (
+          <Star $rotate={-8} $right={-10} $bottom={5} src={star} alt="star" />
+        )}
+      </div>
       {!withBackButton && (
         <Cross src={cross} alt="cross" onClick={handleCrossClick} />
       )}

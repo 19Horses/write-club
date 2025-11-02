@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 import { About } from './pages/About';
 import { Home } from './pages/Home';
 import { InConversation } from './pages/InConversation';
-import { Niche } from './pages/Niche/Niche';
+import { Niche } from './pages/Niche';
 import { StarryNights } from './pages/StarryNights';
 import { WriteClub } from './pages/WriteClub';
 import { Essay } from './pages/Essay';
@@ -29,8 +29,14 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/niche" element={<Niche />} />
             <Route path="/niche/:interviewId" element={<Interview />} />
-            <Route path="/starry-nights" element={<StarryNights />} />
-            <Route path="/starry-nights/:essayId" element={<Essay />} />
+            <Route
+              path="/starry-nights/:collectionId"
+              element={<StarryNights />}
+            />
+            <Route
+              path="/starry-nights/:collectionId/:essayId"
+              element={<Essay />}
+            />
             <Route path="/write-club" element={<WriteClub />} />
             <Route path="/in-conversation" element={<InConversation />} />
           </Routes>

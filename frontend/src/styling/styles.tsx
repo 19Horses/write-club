@@ -1,5 +1,5 @@
-import { styled } from 'styled-components';
-import { fadeIn } from './animations';
+import { css, styled } from 'styled-components';
+import { fadeIn, fadeOut } from './animations';
 
 export const BodyText = styled.p`
   font-family: 'League';
@@ -123,4 +123,67 @@ export const AnimatedBlock = styled.div<{ $isVisible: boolean }>`
 
 export const Buffer = styled.div`
   padding-top: 20px;
+`;
+
+export const Star = styled.img<{
+  $top?: number;
+  $left?: number;
+  $rotate?: number;
+  $right?: number;
+  $bottom?: number;
+  $width?: number;
+  $height?: number;
+}>`
+  width: ${({ $width }) => ($width ? `${$width}px` : '40px')};
+  height: ${({ $height }) => ($height ? `${$height}px` : '40px')};
+  position: absolute;
+  top: ${({ $top }) => ($top ? `${$top}px` : 'auto')};
+  left: ${({ $left }) => ($left ? `${$left}px` : 'auto')};
+  z-index: -1;
+  rotate: ${({ $rotate }) => ($rotate ? $rotate : '0')}deg;
+  right: ${({ $right }) => ($right ? `${$right}px` : 'auto')};
+  bottom: ${({ $bottom }) => ($bottom ? `${$bottom}px` : 'auto')};
+`;
+
+export const Arrow = styled.img`
+  width: 20px;
+  height: 20px;
+  transform: rotate(180deg);
+  opacity: 0;
+  margin-left: -20px;
+  transition: all 0.3s ease-in-out;
+`;
+
+export const Link = styled.a<{ $isOpen: boolean; $animationDelay: number }>`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  text-decoration: none;
+  color: #df1212;
+  transition: transform 0.2s ease-in-out;
+  animation-delay: ${({ $animationDelay }) => `${$animationDelay}s`};
+  animation-fill-mode: forwards;
+  animation: ${({ $isOpen }) =>
+    $isOpen
+      ? css`
+          ${fadeIn} 0.2s ease-in-out
+        `
+      : css`
+          ${fadeOut} 0.2s ease-in-out
+        `};
+  &:hover {
+    transform: translateX(3px);
+
+    ${Arrow} {
+      opacity: 1;
+      margin-left: 0px;
+      margin-right: 8px;
+    }
+  }
 `;

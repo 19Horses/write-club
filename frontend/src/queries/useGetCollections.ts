@@ -18,7 +18,7 @@ export type EssayCollectionType = {
 };
 
 const collectionsQuery = `
-*[_type == 'essayCollection']{
+*[_type == 'essayCollection'] | order(_createdAt desc){
   _id,
   title,
   "essays": essays[]->{
@@ -40,5 +40,14 @@ export const useGetCollections = () => {
     queryKey: ['collectionsData'],
     queryFn: getCollections,
     select: (res) => res.result,
+  });
+};
+
+export const useGetCollection = (collectionId: string) => {
+  return useQuery({
+    queryKey: ['collectionData', collectionId],
+    queryFn: getCollections,
+    select: (res) =>
+      res.result.find((collection) => collection._id === collectionId),
   });
 };
