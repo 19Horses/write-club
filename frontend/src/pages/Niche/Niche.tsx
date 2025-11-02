@@ -1,17 +1,11 @@
 import { useNavigate } from 'react-router';
-import { Header } from '../components/Header';
-import { Layout } from '../components/Layout';
-import { PageContent } from '../components/PageContent';
-import { useGetInterviews } from '../queries/useGetInterviews';
-import { useGetPages } from '../queries/useGetPages';
-import {
-  BodyText,
-  BodyTextSmall,
-  BodyTextTiny,
-  ItemButton,
-  ItemContainer,
-  ItemTitle,
-} from '../styling/styles';
+import { Header } from '../../components/Header';
+import { Layout } from '../../components/Layout';
+import { PageContent } from '../../components/PageContent';
+import { useGetInterviews } from '../../queries/useGetInterviews';
+import { useGetPages } from '../../queries/useGetPages';
+import { BodyText, ItemContainer } from '../../styling/styles';
+import { NicheBadge } from './NicheBadge';
 
 export const Niche = () => {
   const navigate = useNavigate();
@@ -53,15 +47,13 @@ export const Niche = () => {
       <Layout>
         <PageContent content={page[0].copy} />
         <ItemContainer>
-          {interviews?.map((interview) => (
-            <ItemButton
+          {interviews?.map((interview, index) => (
+            <NicheBadge
               key={interview._id}
               onClick={() => handleInterviewClick(interview._id)}
-            >
-              <ItemTitle>{interview.title}</ItemTitle>
-              <BodyTextSmall>{interview.intervieweeName}</BodyTextSmall>
-              <BodyTextTiny>{interview.date}</BodyTextTiny>
-            </ItemButton>
+              intervieweeName={interview.intervieweeName}
+              delay={index * 0.1}
+            />
           ))}
         </ItemContainer>
       </Layout>

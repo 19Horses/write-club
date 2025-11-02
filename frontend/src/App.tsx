@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 import { About } from './pages/About';
 import { Home } from './pages/Home';
 import { InConversation } from './pages/InConversation';
-import { Niche } from './pages/Niche';
+import { Niche } from './pages/Niche/Niche';
 import { StarryNights } from './pages/StarryNights';
 import { WriteClub } from './pages/WriteClub';
 import { Essay } from './pages/Essay';
