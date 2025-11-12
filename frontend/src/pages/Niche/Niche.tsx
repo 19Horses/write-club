@@ -51,7 +51,7 @@ export const Niche = () => {
             <NicheBadge
               key={interview._id}
               onClick={() => handleInterviewClick(interview._id)}
-              intervieweeName={interview.intervieweeName}
+              niche={interview.title}
               delay={index * 0.1}
             />
           ))}

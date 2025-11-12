@@ -3,12 +3,15 @@ import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { AnimatedBlock, BodyText } from '../../styling/styles';
 
 export const BlockComponent = ({ value }: { value: PortableTextBlock }) => {
-  const text = value.children[0].text;
   const { ref, isVisible } = useIntersectionObserver();
 
   return (
-    <AnimatedBlock ref={ref} $isVisible={isVisible}>
-      <BodyText>{text}</BodyText>
-    </AnimatedBlock>
+    <>
+      {value.children.map((child) => (
+        <AnimatedBlock key={child.text} ref={ref} $isVisible={isVisible}>
+          <BodyText>{child.text}</BodyText>
+        </AnimatedBlock>
+      ))}
+    </>
   );
 };
