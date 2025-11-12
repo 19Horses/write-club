@@ -63,21 +63,21 @@ export const BadgeFooter = styled.div`
 
 export const NicheBadge = ({
   onClick,
-  intervieweeName,
+  niche,
   delay,
 }: {
   onClick: () => void;
-  intervieweeName: string;
+  niche: string;
   delay: number;
 }) => {
   return (
     <Badge $delay={delay} onClick={onClick}>
       <BadgeHeader>
         <BodyText>HELLO</BodyText>
-        <BodyTextSmall>my name is</BodyTextSmall>
+        <BodyTextSmall>my niche is</BodyTextSmall>
       </BadgeHeader>
       <BadgeContent>
-        <BodyText style={{ textAlign: 'center' }}>{intervieweeName}</BodyText>
+        <BodyText style={{ textAlign: 'center' }}>{niche}</BodyText>
       </BadgeContent>
       <BadgeFooter />
     </Badge>

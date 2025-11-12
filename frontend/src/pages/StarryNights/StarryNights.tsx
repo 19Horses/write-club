@@ -7,6 +7,7 @@ import { useGetCollection } from '../../queries/useGetCollections';
 import { useGetPages } from '../../queries/useGetPages';
 import { BodyText, Star } from '../../styling/styles';
 import { CollectionNavigation } from './Navigation';
+import { StarryNightStar } from './styles';
 
 const StarryNightsContainer = styled.div`
   display: grid;
@@ -70,43 +71,34 @@ export const StarryNights = () => {
       <Layout>
         <PageContent content={page[0].copy} />
         <StarryNightsContainer className="starry-nights-container">
-          {collection?.essays?.map((essay) => {
-            const top = Math.floor(Math.random() * 40);
-            const left = Math.floor(Math.random() * 100);
-            return (
-              <GridItem key={essay._id}>
-                <Star
-                  style={{ width: '70%', height: 'auto' }}
-                  $rotate={Math.floor(Math.random() * 60) - 60}
-                  $top={top}
-                  $left={left}
-                />
-                <div
-                  style={{
-                    width: '50%',
-                    textAlign: 'center',
-                    position: 'absolute',
-                    top: `calc(${top}px + 50%)`,
-                    left: `calc(${left}px + 35%)`,
-                    transform: 'translate(-50%, -50%)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    zIndex: 1,
+          {collection?.essays?.map((essay) => (
+            <GridItem key={essay._id}>
+              <StarryNightStar />
+              <div
+                style={{
+                  width: '35%',
+                  textAlign: 'center',
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  zIndex: 1,
+                }}
+              >
+                <BodyText
+                  style={{ cursor: 'pointer', textAlign: 'center' }}
+                  onClick={() => {
+                    navigate(`/starry-nights/${collectionId}/${essay._id}`);
                   }}
                 >
-                  <BodyText
-                    style={{ cursor: 'pointer', textAlign: 'center' }}
-                    onClick={() => {
-                      navigate(`/starry-nights/${collectionId}/${essay._id}`);
-                    }}
-                  >
-                    {essay.title}
-                  </BodyText>
-                </div>
-              </GridItem>
-            );
-          })}
+                  {essay.title}
+                </BodyText>
+              </div>
+            </GridItem>
+          ))}
         </StarryNightsContainer>
       </Layout>
       <CollectionNavigation />
