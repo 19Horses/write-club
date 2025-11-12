@@ -6,8 +6,8 @@ export const useIntersectionObserver = (options?: IntersectionObserverInit) => {
 
   const observerOptions = useMemo(
     () => ({
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.05,
+      rootMargin: '0px',
       ...options,
     }),
     [options]
