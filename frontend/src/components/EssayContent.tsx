@@ -13,5 +13,6 @@ const components = {
 };
 
 export const EssayContent = ({ content }: EssayContentProps) => {
+  console.log(content);
   return <PortableText value={content} components={components} />;
 };
