@@ -5,9 +5,11 @@ import { Layout } from '../../components/Layout';
 import { PageContent } from '../../components/PageContent';
 import { useGetCollection } from '../../queries/useGetCollections';
 import { useGetPages } from '../../queries/useGetPages';
-import { BodyText, Star } from '../../styling/styles';
+import { BodyText } from '../../styling/styles';
 import { CollectionNavigation } from './Navigation';
 import { StarryNightStar } from './styles';
+import star from '../../assets/images/star.png';
+import { useEffect } from 'react';
 
 const StarryNightsContainer = styled.div`
   display: grid;
@@ -48,6 +50,14 @@ export const StarryNights = () => {
     isLoading: isStarryNightsPageLoading,
     isError: isStarryNightsPageError,
   } = useGetPages('starry-nights');
+
+  useEffect(() => {
+    document.body.style.cursor = `url(${star}), auto`;
+
+    return () => {
+      document.body.style.cursor = 'auto';
+    };
+  }, []);
 
   if (isStarryNightsPageLoading || isCollectionLoading) {
     return (
