@@ -29,7 +29,15 @@ export const essay = defineType({
       type: 'array',
       validation: (rule) => rule.required(),
       of: [
-        {type: 'block'},
+        {
+          type: 'block',
+          marks: {
+            decorators: [
+              {title: 'Strong', value: 'strong'},
+              {title: 'Emphasis', value: 'em'},
+            ],
+          },
+        },
         {
           type: 'image',
           options: {hotspot: true},
