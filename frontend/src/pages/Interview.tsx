@@ -10,6 +10,7 @@ import {
   Buffer,
   ItemTitle,
 } from '../styling/styles';
+import { MOBILE_BREAKPOINT } from '../constants';
 
 const EssayHeader = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ const EssayHeader = styled.div`
   text-align: left;
   transition: all 0.3s ease-in-out;
 
-  @media (max-width: 900px) {
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
     text-align: right;
   }
 `;

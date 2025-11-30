@@ -32,14 +32,20 @@ const Text = styled.p<{ $isMobile: boolean }>`
 `;
 
 const Container = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 `;
 
 const SideText = styled(Text)`
-  font-size: 55px;
+  font-size: 45px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 export const HeaderTextCarousel = ({
@@ -58,8 +64,21 @@ export const HeaderTextCarousel = ({
   const previousText =
     pageTitles[currentTextIndex - 1] || pageTitles[pageTitles.length - 1];
   const handleTextClick = (text: string) => {
-    navigate(`/${text.toLowerCase()}`);
+    const link = links[text as keyof typeof links];
+    if (link) {
+      navigate(link);
+    }
   };
+
+  if (isMobile) {
+    return (
+      <div style={{ position: 'relative' }}>
+        {withStar && <Star $top={5} $left={10} $rotate={-10} alt="star" />}
+        <Text $isMobile={isMobile}>{currentText}</Text>
+        {withStar && <Star $rotate={-8} $right={-10} $bottom={5} alt="star" />}
+      </div>
+    );
+  }
   return (
     <Container>
       <SideText
