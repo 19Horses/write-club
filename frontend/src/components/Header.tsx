@@ -5,20 +5,7 @@ import back from '../assets/images/back.svg';
 import cross from '../assets/images/cross.svg';
 import { MOBILE_BREAKPOINT } from '../constants';
 import { fadeIn } from '../styling/animations';
-import { Star } from '../styling/styles';
-
-const Text = styled.p<{ $isMobile: boolean }>`
-  font-family: 'Luxury';
-  font-size: ${({ $isMobile }) => ($isMobile ? '60px' : '80px')};
-  margin: 0;
-  color: #df1212;
-  text-align: ${({ $isMobile }) => ($isMobile ? 'left' : 'center')};
-
-  &::selection {
-    background-color: #df1212;
-    color: white;
-  }
-`;
+import { HeaderTextCarousel } from './HeaderTextCarousel';
 
 const StyledHeader = styled.header<{ $isMobile: boolean }>`
   width: 100%;
@@ -76,11 +63,7 @@ export const Header = ({
       {withBackButton && (
         <Back src={back} alt="back" onClick={handleBackButtonClick} />
       )}
-      <div style={{ position: 'relative' }}>
-        {withStar && <Star $top={5} $left={10} $rotate={-10} alt="star" />}
-        <Text $isMobile={isMobile}>{title}</Text>
-        {withStar && <Star $rotate={-8} $right={-10} $bottom={5} alt="star" />}
-      </div>
+      <HeaderTextCarousel currentText={title} withStar={withStar} />
       {!withBackButton && (
         <Cross src={cross} alt="cross" onClick={handleCrossClick} />
       )}

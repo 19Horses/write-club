@@ -30,6 +30,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/niche" element={<Niche />} />
             <Route path="/niche/:interviewId" element={<Interview />} />
+            <Route path="/starry-nights" element={<StarryNights />} />
             <Route
               path="/starry-nights/:collectionId"
               element={<StarryNights />}

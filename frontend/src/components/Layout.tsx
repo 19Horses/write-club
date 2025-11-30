@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import { fadeIn } from '../styling/animations';
+import { MOBILE_BREAKPOINT } from '../constants';
 
 const Container = styled.div`
   width: 100%;
@@ -11,7 +12,7 @@ const Container = styled.div`
   padding: 0px 100px 100px 100px;
   box-sizing: border-box;
   transition: all 0.3s ease-in-out;
-  @media (max-width: 900px) {
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
     padding: 0px 20px 20px 20px;
   }
 `;

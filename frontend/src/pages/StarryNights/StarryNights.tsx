@@ -3,7 +3,10 @@ import { styled } from 'styled-components';
 import { Header } from '../../components/Header';
 import { Layout } from '../../components/Layout';
 import { PageContent } from '../../components/PageContent';
-import { useGetCollection } from '../../queries/useGetCollections';
+import {
+  useGetCollection,
+  useGetCollections,
+} from '../../queries/useGetCollections';
 import { useGetPages } from '../../queries/useGetPages';
 import { BodyText } from '../../styling/styles';
 import { CollectionNavigation } from './Navigation';
@@ -40,11 +43,15 @@ const GridItem = styled.div`
 export const StarryNights = () => {
   const navigate = useNavigate();
   const { collectionId = '' } = useParams();
+
+  const { data: collections } = useGetCollections();
+  const mostRecentCollection = collections?.[0];
+
   const {
     data: collection,
     isLoading: isCollectionLoading,
     isError: isCollectionError,
-  } = useGetCollection(collectionId);
+  } = useGetCollection(collectionId || mostRecentCollection?._id || '');
   const {
     data: page,
     isLoading: isStarryNightsPageLoading,
