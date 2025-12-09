@@ -1,8 +1,10 @@
 import { useState, useRef, useMemo, useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 export const useIntersectionObserver = (options?: IntersectionObserverInit) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const observerOptions = useMemo(
     () => ({
@@ -14,6 +16,12 @@ export const useIntersectionObserver = (options?: IntersectionObserverInit) => {
   );
 
   useEffect(() => {
+    // Disable on mobile - always show content immediately
+    if (isMobile) {
+      setIsVisible(true);
+      return;
+    }
+
     const element = ref.current;
     if (!element) return;
 
@@ -29,7 +37,7 @@ export const useIntersectionObserver = (options?: IntersectionObserverInit) => {
     return () => {
       observer.disconnect();
     };
-  }, [observerOptions]);
+  }, [observerOptions, isMobile]);
 
   return { ref, isVisible };
 };
