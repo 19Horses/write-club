@@ -23,7 +23,7 @@ const Container = styled.div`
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <BrowserRouter>
         <Container>
           <Routes>
             <Route path="/" element={<Home />} />
