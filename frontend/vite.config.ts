@@ -11,6 +11,6 @@ const vitestConfig: VitestUserConfigInterface = {
 
 export default defineConfig({
   plugins: [react()],
-  base: '/write-club/',
+  base: '/',
   ...vitestConfig,
 });
